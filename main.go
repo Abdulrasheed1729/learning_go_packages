@@ -1,43 +1,51 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
-	"io/ioutil"
-	"os"
 )
 
 func main() {
 
-	// Performing I/O operations with the "os" and "io/ioutil" packaegs
-	//! Opening a file
-	bs, err := ioutil.ReadFile("test.txt")
-	if err != nil {
-		return
-	}
-	str := string(bs)
-	fmt.Println(str)
+	var x list.List
+	x.PushBack(1)
+	x.PushBack(2)
+	x.PushBack(3)
 
-	//! Creating a new file
-	file, err := os.Create("hello.txt")
-	if err != nil {
-		return
+	for e := x.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value.(int))
 	}
-	defer file.Close()
-	file.WriteString("Hello my people, how are you doing ?")
 
-	//! Opening a directory
-	dir, err := os.Open(".")
-	if err != nil {
-		return
-	}
-	defer dir.Close()
+	// //* Performing I/O operations with the "os" and "io/ioutil" packaegs
+	// //! Opening a file
+	// bs, err := ioutil.ReadFile("test.txt")
+	// if err != nil {
+	// 	return
+	// }
+	// str := string(bs)
+	// fmt.Println(str)
 
-	fileInfos, err := dir.ReadDir(-1)
-	if err != nil {
-		return
-	}
-	for _, fi := range fileInfos {
-		fmt.Println(fi.Name())
-	}
+	// //! Creating a new file
+	// file, err := os.Create("hello.txt")
+	// if err != nil {
+	// 	return
+	// }
+	// defer file.Close()
+	// file.WriteString("Hello my people, how are you doing ?")
+
+	// //! Opening a directory
+	// dir, err := os.Open(".")
+	// if err != nil {
+	// 	return
+	// }
+	// defer dir.Close()
+
+	// fileInfos, err := dir.ReadDir(-1)
+	// if err != nil {
+	// 	return
+	// }
+	// for _, fi := range fileInfos {
+	// 	fmt.Println(fi.Name())
+	// }
 
 }
